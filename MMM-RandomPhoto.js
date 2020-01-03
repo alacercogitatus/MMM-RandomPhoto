@@ -35,7 +35,7 @@ Module.register("MMM-RandomPhoto",{
 				components.push(x);
 			}
 		}
-		console.log("module=MMM-RandomPhoto configuration=" + self.config.join("="));
+		console.log("module=MMM-RandomPhoto configuration=" + self.config);
 		console.log("module=MMM-RandomPhoto components=" + components.join(":"));
 		var url = "https://unsplash.it/" + self.config.width + "/" + self.config.height + "/" + (components.length > 0 ? '?' : '') +components.join("&");
 		url = url + (url.indexOf('?') > -1 ? '&' : '?') + (new Date().getTime());
