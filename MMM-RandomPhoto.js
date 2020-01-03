@@ -35,7 +35,7 @@ Module.register("MMM-RandomPhoto",{
 				components.push(x);
 			}
 		}
-		console.log("module=MMM-RandomPhoto configuration=" + self.config);
+		console.log("module=MMM-RandomPhoto configuration=" + JSON.stringify(self.config));
 		console.log("module=MMM-RandomPhoto components=" + components.join(":"));
 		var url = "https://unsplash.it/" + self.config.width + "/" + self.config.height + "/" + (components.length > 0 ? '?' : '') +components.join("&");
 		url = url + (url.indexOf('?') > -1 ? '&' : '?') + (new Date().getTime());
@@ -47,7 +47,7 @@ Module.register("MMM-RandomPhoto",{
 				}, self.config.animationSpeed, function() {
 					$(this).attr('id', 'mmm-photos-placeholder2');
 				});
-				self.sendNotification("module=MMM-RandomPhoto src=" + $('#mmm-photos-placeholder1').attr('src'), name);
+				console.log("module=MMM-RandomPhoto src=" + $('#mmm-photos-placeholder1').attr('src'), name);
 				$('#mmm-photos-placeholder2').animate({
 					opacity: 0
 				}, self.config.animationSpeed, function() {
