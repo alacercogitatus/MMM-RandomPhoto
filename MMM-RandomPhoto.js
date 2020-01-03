@@ -30,12 +30,12 @@ Module.register("MMM-RandomPhoto",{
 	load: function() {
 		var self = this;
 		let components = [], name = "MMM-RandomPhoto";
-		for (let x in ["random", "blur", "grayscale"]){
+		["random", "blur", "grayscale"].forEach(function(x, index){
 			console.log("module=MMM-RandomPhoto x=" + x + " config=" + self.config[x]);
 			if (self.config[x]){
 				components.push(x);
 			}
-		}
+		});
 		console.log("module=MMM-RandomPhoto configuration=" + JSON.stringify(self.config));
 		console.log("module=MMM-RandomPhoto components=" + components.join(":"));
 		var url = "https://unsplash.it/" + self.config.width + "/" + self.config.height + "/" + (components.length > 0 ? '?' : '') +components.join("&");
