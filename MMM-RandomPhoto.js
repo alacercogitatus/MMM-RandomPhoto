@@ -31,6 +31,7 @@ Module.register("MMM-RandomPhoto",{
 		var self = this;
 		let components = [], name = "MMM-RandomPhoto";
 		for (let x in ["random", "blur", "grayscale"]){
+			console.log("module=MMM-RandomPhoto x=" + x + " config=" + self.config[x]);
 			if (self.config[x]){
 				components.push(x);
 			}
