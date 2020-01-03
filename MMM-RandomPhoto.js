@@ -29,7 +29,7 @@ Module.register("MMM-RandomPhoto",{
 
 	load: function() {
 		var self = this;
-		let components = [];
+		let components = [], name = "MMM-RandomPhoto";
 		for (let x in ["random", "blur", "grayscale"]){
 			if (self.config[x]){
 				components.push(x);
@@ -41,14 +41,13 @@ Module.register("MMM-RandomPhoto",{
 		url = url + (url.indexOf('?') > -1 ? '&' : '?') + (new Date().getTime());
 		console.log("module=MMM-RandomPhoto url=" + url);
 		var img = $('<img />').attr('src', url);
-
 		img.on('load', function() {
 				$('#mmm-photos-placeholder1').attr('src', url).animate({
 					opacity: self.config.opacity
 				}, self.config.animationSpeed, function() {
 					$(this).attr('id', 'mmm-photos-placeholder2');
 				});
-
+				self.sendNotification("module=MMM-RandomPhoto src=" + $('#mmm-photos-placeholder1').attr('src'), name);
 				$('#mmm-photos-placeholder2').animate({
 					opacity: 0
 				}, self.config.animationSpeed, function() {
