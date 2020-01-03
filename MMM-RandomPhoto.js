@@ -4,6 +4,7 @@
  * Module: MMM-RandomPhoto
  *
  * By Diego Vieira <diego@protos.inf.br>
+ * And Alacer Cogitatus
  * ICS Licensed.
  */
 
@@ -12,7 +13,14 @@ Module.register("MMM-RandomPhoto",{
 		opacity: 0.3,
 		animationSpeed: 500,
 		updateInterval: 60,
-		url: 'https://unsplash.it/1920/1080/?random'
+		//url: 'https://unsplash.it/1920/1080/?random'
+		grayscale: false,
+		random: true,
+		blur: false,
+		show_info: false,
+		info_position: "top_bar",
+		height: 1080,
+		width: 1920
 	},
 
 	start: function() {
@@ -21,8 +29,14 @@ Module.register("MMM-RandomPhoto",{
 
 	load: function() {
 		var self = this;
-
-		var url = self.config.url + (self.config.url.indexOf('?') > -1 ? '&' : '?') + (new Date().getTime());
+		let components = [];
+		for (let x in ["random", "blur", "grayscale"]){
+			if (self.config[x]){
+				components.push(x);
+			}
+		}
+		var url = "https://unsplash.it/" + self.config.width + "/" + self.config.height + "/" + (components.length > 0 ? '?' : '') +components.join("&");
+		url = url + (url.indexOf('?') > -1 ? '&' : '?') + (new Date().getTime());
 		var img = $('<img />').attr('src', url);
 
 		img.on('load', function() {
