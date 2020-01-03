@@ -37,6 +37,7 @@ Module.register("MMM-RandomPhoto",{
 		}
 		var url = "https://unsplash.it/" + self.config.width + "/" + self.config.height + "/" + (components.length > 0 ? '?' : '') +components.join("&");
 		url = url + (url.indexOf('?') > -1 ? '&' : '?') + (new Date().getTime());
+		Log.info("module=MMM-RandomPhoto url=" + url);
 		var img = $('<img />').attr('src', url);
 
 		img.on('load', function() {
